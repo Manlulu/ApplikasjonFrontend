@@ -1,0 +1,41 @@
+#container {
+    padding: 30px;
+}
+input[type=text] {
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 6px;
+}
+
+input[type=submit] {
+    transition-duration: 0.4s;
+    background-color: white;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #4caf50;
+}
+
+input[type=submit]:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#alleUsers-listen {
+    font-size: 20px;
+    background-color: #4caf50;
+    width: 400px;
+
+}
+
+#alleUsers-listen li:nth-child(odd) {
+    background-color: #4caf50;
+}
+
+#alleUsers-listen li:nth-child(even) {
+    background-color: darkcyan;
+}
+
+#login-message {
+    color: red;
+}
