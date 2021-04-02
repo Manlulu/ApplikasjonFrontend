@@ -46,6 +46,33 @@ function loginUser() {
     });
 }
 
+function logoutUser() {
+    let token = {
+        "token": window.localStorage.getItem("userToken")
+    };
+
+    $.ajax({
+        url: "http://localhost:8080/logoutUser",
+        dataType: "text",
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify(token),
+        success: function (response) {
+            console.log("Success: " + response);
+            document.getElementById("index-overskrift").innerHTML = "Du er logget ut";
+            window.localStorage.setItem("userToken", null);
+        },
+        error: function (error) {
+            console.log(error);
+            if(error.status === 400) {
+                document.getElementById("index-message").innerHTML = "Du var ikke logget inn";
+            } else {
+                document.getElementById("index-message").innerHTML = "Ukjent feil";
+            }
+        }
+    });
+}
+
 function fetchAllUsers() {
     const url = "http://localhost:8080/all";
 
