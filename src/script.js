@@ -100,11 +100,21 @@ function addUserToList(element, index, arr) {
 }
 
 function fetchMinSide() {
-    let userToken = window.localStorage.getItem('userToken');
+    let userToken = window.localStorage.getItem("userToken");
 
-    const url = "http://localhost:8080/hentBrukerData/" + userToken;
+    let token = {
+        "token": userToken
+    };
+    const url = "http://localhost:8080/hentBrukerData";
 
-    fetch(url)
+    fetch(url, {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(token)
+    })
         .then(function (response) {
             return response.text();
         }).then(function (responseString) {
@@ -113,6 +123,6 @@ function fetchMinSide() {
         console.log(result);
         document.getElementById("minSide-overskrift").innerHTML = "Bruker: " + result.username + ". Token: " + userToken;
     }).catch((error) => {
-        console.log("En error " + error);
+        console.log("En error: " + error);
     });
 }
