@@ -74,7 +74,7 @@ function logoutUser() {
 }
 
 function fetchAllUsers() {
-    const url = "http://localhost:8080/all";
+    const url = "http://localhost:8080/allUsers";
 
     fetch(url)
         .then(function (response) {
