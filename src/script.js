@@ -105,7 +105,7 @@ function fetchMinSide() {
     let token = {
         "token": userToken
     };
-    const url = "http://localhost:8080/hentBrukerData";
+    const url = "http://localhost:8080/userData";
 
     fetch(url, {
         method: 'post',
