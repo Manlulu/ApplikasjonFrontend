@@ -6,20 +6,27 @@
     <title>En enkel frontend</title>
 </head>
 <body>
-    <div id="container">
-        <h1>Dette er en enkel frontend</h1>
-        <p id="index-overskrift">Gjør noe</p>
+<div id="container">
+    <h1>Dette er en enkel frontend</h1>
+    <p id="index-overskrift">Gjør noe</p>
 
-        <p></p><a href="createUser.html">Opprett bruker</a><p>
-        <p><a href="login.html">Logg inn</a><p>
-        <p><a href="alleUsers.html">Vis alle brukere</a><p>
-        <p><a href="minSide.html">Min side</a><p>
 
-        <button onclick="logoutUser()">Logg out</button>
-        <p id="index-message"></p>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="script.js"></script>
+    <div id="nav">
+        <ul>
+            <li><a href="createUser.html">Opprett bruker</a></li>
+            <li><a href="login.html">Logg inn</a></li>
+            <li><a href="alleUsers.html">Vis alle brukere</a></li>
+            <li><a href="minSide.html">Min side</a></li>
+        </ul>
+        <div class="logoutUser">
+            <button onclick="logoutUser()">Logg out</button>
+        </div>
     </div>
+
+    <p id="index-message"></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</div>
 </body>
 </html>
