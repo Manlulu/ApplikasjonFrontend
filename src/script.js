@@ -13,11 +13,15 @@ function createUser() {
     console.log("Sender post")
     fetch(url, options)
         .then(function (response) {
-            return response.text();
+            if (response.status !== 201) {
+                return response.text();
+            } else {
+                window.location = "login.html"
+            }
         })
         .then(function (result) {
             console.log(result);
-            document.getElementById("createUser-message").innerHTML = "Bruker: " + result;
+            document.getElementById("createUser-message").innerHTML = result.toString();
         })
         .catch((error) => {
             console.log("En error: " + error);
