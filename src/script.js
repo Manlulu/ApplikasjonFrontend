@@ -12,9 +12,16 @@ function createUser() {
     }
     console.log("Sender post")
     fetch(url, options)
-        .then(() => window.location = "login.html")
-        .catch(err => console.log("En error ble kasta: " + err))
-
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (result) {
+            console.log(result);
+            document.getElementById("createUser-message").innerHTML = "Bruker: " + result;
+        })
+        .catch((error) => {
+            console.log("En error: " + error);
+        });
 }
 
 function loginUser() {
@@ -37,7 +44,7 @@ function loginUser() {
         },
         error: function (error) {
             console.log(error);
-            if(error.status === 401) {
+            if (error.status === 401) {
                 document.getElementById("login-message").innerHTML = "Feil brukernavn eller passord";
             } else {
                 document.getElementById("login-message").innerHTML = "Ukjent feil";
@@ -64,7 +71,7 @@ function logoutUser() {
         },
         error: function (error) {
             console.log(error);
-            if(error.status === 400) {
+            if (error.status === 400) {
                 document.getElementById("index-message").innerHTML = "Du var ikke logget inn";
             } else {
                 document.getElementById("index-message").innerHTML = "Ukjent feil";
