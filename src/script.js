@@ -130,7 +130,10 @@ function fetchMinSide() {
         .then(function (response) {
             return response.text();
         }).then(function (responseString) {
-        return JSON.parse(responseString);
+        if (responseString.length !== 0) {
+            document.getElementById("minSide_login").style.visibility = "hidden";
+            return JSON.parse(responseString);
+        }
     }).then(function (result) {
         console.log(result);
         document.getElementById("minSide-overskrift").innerHTML = "Bruker: " + result.username + ". Token: " + userToken;

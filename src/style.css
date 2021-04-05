@@ -3,6 +3,13 @@
     font-family: Baskerville, Arial, "Baskerville Old Face", serif;
 }
 
+#headline a, #headline h1 {
+    background-color: darkblue;
+    display: inline;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 input[type=text] {
     padding: 10px;
     margin: 0 0 10px 0;
