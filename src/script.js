@@ -21,10 +21,11 @@ function createUser() {
         })
         .then(function (result) {
             console.log(result);
-            document.getElementById("createUser-message").innerHTML = result.toString();
+            throw new Error(result.toString());
         })
-        .catch((error) => {
-            console.log("En error: " + error);
+        .catch(error => {
+            console.log("Catcher error: " + error);
+            document.getElementById("createUser-message").innerHTML = error.message;
         });
 }
 
@@ -70,8 +71,8 @@ function logoutUser() {
         data: JSON.stringify(token),
         success: function (response) {
             console.log("Success: " + response);
-            document.getElementById("index-overskrift").innerHTML = "Du er logget ut";
             window.localStorage.setItem("userToken", null);
+            window.location.reload(true);
         },
         error: function (error) {
             console.log(error);
