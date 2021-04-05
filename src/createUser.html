@@ -7,6 +7,21 @@
 </head>
 <body>
 <div id="container">
+    <div id="header_menu">
+        <h1>Dette er en enkel frontend</h1>
+        <div id="nav">
+            <ul>
+                <li><a href="createUser.html">Opprett bruker</a></li>
+                <li><a href="login.html">Logg inn</a></li>
+                <li><a href="alleUsers.html">Vis alle brukere</a></li>
+                <li><a href="minSide.html">Min side</a></li>
+            </ul>
+            <div class="logoutUser">
+                <button onclick="logoutUser()">Logg out</button>
+            </div>
+        </div>
+    </div>
+
     <h1>Opprett bruker</h1>
     <p>Skriv inn brukernavn og passord</p>
 
@@ -19,9 +34,10 @@
     </form>
     <button onclick="createUser()">Opprett bruker</button>
 
-    <p><a href="index.html">Tilbake</a><p>
+    <p><a href="index.html">Tilbake</a>
+    <p>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </div>
 </body>
 </html>

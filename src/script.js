@@ -87,7 +87,7 @@ function fetchAllUsers() {
 
         return allUsers;
     }).then(function (result) {
-            document.getElementById("visAlle").innerHTML = "Det er " + result.length + " elementer i listen";
+            document.getElementById("visAlle").innerHTML = "Det er " + result.length + " registrerte brukere";
         }
     )
 }
