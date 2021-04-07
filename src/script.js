@@ -1,5 +1,6 @@
 function createUser() {
-    let url = "http://localhost:8080/createUser";
+//    let url = "http://localhost:8080/createUser";
+    let url = "https://secure-badlands-30357.herokuapp.com/createUser";
     let user = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
@@ -36,7 +37,8 @@ function loginUser() {
     };
 
     $.ajax({
-        url: "http://localhost:8080/login",
+        //url: "http://localhost:8080/login",
+        url: "https://secure-badlands-30357.herokuapp.com/login",
         dataType: "text",
         type: "post",
         contentType: "application/json",
@@ -64,7 +66,8 @@ function logoutUser() {
     };
 
     $.ajax({
-        url: "http://localhost:8080/logoutUser",
+        // url: "http://localhost:8080/logoutUser",
+        url: "https://secure-badlands-30357.herokuapp.com/logoutUser",
         dataType: "text",
         type: "post",
         contentType: "application/json",
@@ -86,7 +89,8 @@ function logoutUser() {
 }
 
 function fetchAllUsers() {
-    const url = "http://localhost:8080/allUsers";
+    // const url = "http://localhost:8080/allUsers";
+    const url = "https://secure-badlands-30357.herokuapp.com/allUsers";
 
     fetch(url)
         .then(function (response) {
@@ -117,7 +121,8 @@ function fetchMinSide() {
     let token = {
         "token": userToken
     };
-    const url = "http://localhost:8080/user";
+    // const url = "http://localhost:8080/user";
+    const url = "https://secure-badlands-30357.herokuapp.com/user";
 
     fetch(url, {
         method: 'post',
