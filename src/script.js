@@ -146,3 +146,30 @@ function fetchMinSide() {
         console.log("En error: " + error);
     });
 }
+
+function startBackend() {
+    let userToken = window.localStorage.getItem("userToken");
+
+    let token = {
+        "token": userToken
+    };
+    // const url = "http://localhost:8080/user";
+    const url = "https://secure-badlands-30357.herokuapp.com/user";
+
+    fetch(url, {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(token)
+    })
+        .then(function (result) {
+            console.log(result);
+            document.getElementById("index-message").innerHTML = "Backend startet";
+            document.getElementById("index-message").style.backgroundColor = "green";
+        })
+        .catch((error) => {
+            console.log("En error: " + error);
+        });
+}
