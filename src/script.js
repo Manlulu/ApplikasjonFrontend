@@ -1,6 +1,7 @@
+// const baseUrl = "http://localhost:8080";
+const baseUrl = "https://secure-badlands-30357.herokuapp.com";
+
 function createUser() {
-//    let url = "http://localhost:8080/createUser";
-    let url = "https://secure-badlands-30357.herokuapp.com/createUser";
     let user = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
@@ -12,7 +13,7 @@ function createUser() {
         headers: {"Content-type": "application/json"}
     }
     console.log("Sender post")
-    fetch(url, options)
+    fetch(baseUrl + "/createUser", options)
         .then(function (response) {
             if (response.status !== 201) {
                 return response.text();
@@ -37,8 +38,7 @@ function loginUser() {
     };
 
     $.ajax({
-        //url: "http://localhost:8080/login",
-        url: "https://secure-badlands-30357.herokuapp.com/login",
+        url: baseUrl + "/login",
         dataType: "text",
         type: "post",
         contentType: "application/json",
@@ -66,8 +66,7 @@ function logoutUser() {
     };
 
     $.ajax({
-        // url: "http://localhost:8080/logoutUser",
-        url: "https://secure-badlands-30357.herokuapp.com/logoutUser",
+        url: baseUrl + "/logoutUser",
         dataType: "text",
         type: "post",
         contentType: "application/json",
@@ -89,10 +88,7 @@ function logoutUser() {
 }
 
 function fetchAllUsers() {
-    // const url = "http://localhost:8080/allUsers";
-    const url = "https://secure-badlands-30357.herokuapp.com/allUsers";
-
-    fetch(url)
+    fetch(baseUrl + "/allUsers")
         .then(function (response) {
             return response.text();
         }).then(function (responseString) {
@@ -106,6 +102,8 @@ function fetchAllUsers() {
             document.getElementById("visAlle").innerHTML = "Det er " + result.length + " registrerte brukere";
         }
     )
+
+    startBackend();
 }
 
 function addUserToList(element, index, arr) {
@@ -121,10 +119,8 @@ function fetchMinSide() {
     let token = {
         "token": userToken
     };
-    // const url = "http://localhost:8080/user";
-    const url = "https://secure-badlands-30357.herokuapp.com/user";
 
-    fetch(url, {
+    fetch(baseUrl + "/user", {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -145,6 +141,8 @@ function fetchMinSide() {
     }).catch((error) => {
         console.log("En error: " + error);
     });
+
+    startBackend();
 }
 
 function startBackend() {
@@ -153,10 +151,8 @@ function startBackend() {
     let token = {
         "token": userToken
     };
-    // const url = "http://localhost:8080/user";
-    const url = "https://secure-badlands-30357.herokuapp.com/user";
 
-    fetch(url, {
+    fetch(baseUrl + "/user", {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -166,7 +162,7 @@ function startBackend() {
     })
         .then(function (result) {
             console.log(result);
-            document.getElementById("index-message").innerHTML = "Backend startet";
+            document.getElementById("index-message").innerHTML = "Dette er en enkel frontend (Backend startet)";
             document.getElementById("index-message").style.backgroundColor = "green";
         })
         .catch((error) => {
