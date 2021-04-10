@@ -129,7 +129,8 @@ function fetchMinSide() {
         }
     }).then(function (result) {
         console.log(result);
-        document.getElementById("minSide-overskrift").innerHTML = "Bruker: " + result.username + ". Token: " + userToken;
+        document.getElementById("minSide-brukernavn").innerHTML = "Bruker: " + result.username;
+        document.getElementById("minSide-email").innerHTML = "E-post: " + result.email;
     }).catch((error) => {
         console.log("En error: " + error);
     });
