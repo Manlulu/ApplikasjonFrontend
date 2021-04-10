@@ -1,10 +1,12 @@
-// const baseUrl = "http://localhost:8080";
-const baseUrl = "https://secure-badlands-30357.herokuapp.com";
+const baseUrl = "http://localhost:8080";
+
+// const baseUrl = "https://secure-badlands-30357.herokuapp.com";
 
 function createUser() {
     let user = {
         "username": document.getElementById("username").value,
-        "password": document.getElementById("password").value
+        "password": document.getElementById("password").value,
+        "email": document.getElementById("email").value
     };
 
     let options = {
@@ -92,25 +94,15 @@ function fetchAllUsers() {
         .then(function (response) {
             return response.text();
         }).then(function (responseString) {
-
         const allUsers = JSON.parse(responseString);
-
-        allUsers.forEach(addUserToList);
-
-        return allUsers;
+        createTable(allUsers);
+        return allUsers.length;
     }).then(function (result) {
-            document.getElementById("visAlle").innerHTML = "Det er " + result.length + " registrerte brukere";
+            document.getElementById("visAlle").innerHTML = "Det er " + result + " registrerte brukere";
         }
     )
 
     startBackend();
-}
-
-function addUserToList(element, index, arr) {
-    const li = document.createElement('li');
-
-    document.getElementById("alleUsers-listen").appendChild(li);
-    li.innerHTML = element.username;
 }
 
 function fetchMinSide() {

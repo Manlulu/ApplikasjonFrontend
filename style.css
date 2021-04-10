@@ -30,20 +30,6 @@ input[type=text] {
     color: white;
 }
 
-#alleUsers-listen {
-    background-color: #4caf50;
-    width: 400px;
-
-}
-
-#alleUsers-listen li:nth-child(odd) {
-    background-color: #4caf50;
-}
-
-#alleUsers-listen li:nth-child(even) {
-    background-color: darkcyan;
-}
-
 #login-message {
     color: red;
 }
