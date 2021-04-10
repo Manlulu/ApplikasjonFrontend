@@ -76,3 +76,27 @@ input[type=text] {
 ul.nav li.current a {
     background: #086754;
 }
+
+#allUsers_table th, td {
+    border: 1px solid black;
+    padding: 15px;
+}
+
+#allUsers_table th {
+    background-color: darkgrey;
+    text-align: left;
+}
+
+#allUsers_table tr:nth-child(even) {
+    background-color: lightskyblue;
+}
+
+#allUsers_table tr:nth-child(odd) {
+    background-color: lightgreen;
+}
+
+#allUsers_table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 30%;
+}
