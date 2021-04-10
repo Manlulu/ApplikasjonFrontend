@@ -138,6 +138,33 @@ function fetchMinSide() {
     startBackend();
 }
 
+function findUser() {
+    let user = {
+        "username": document.getElementById("username").value,
+    };
+
+    $.ajax({
+        url: baseUrl + "/findUser",
+        dataType: "text",
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify(user),
+        success: function (response) {
+            console.log("Success: " + response);
+            let jsonResponse = JSON.parse(response);
+            document.getElementById("minSide-message").innerHTML = "Brukernavn: " + jsonResponse.username + ". E-post: " + jsonResponse.email;
+        },
+        error: function (error) {
+            console.log(error);
+            if (error.status === 400) {
+                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
+            } else {
+                document.getElementById("login-message").innerHTML = "Ukjent feil";
+            }
+        }
+    });
+}
+
 function startBackend() {
     let userToken = window.localStorage.getItem("userToken");
 
