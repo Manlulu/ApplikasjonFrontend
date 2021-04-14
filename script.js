@@ -124,7 +124,7 @@ function fetchMinSide() {
             return response.text();
         }).then(function (responseString) {
         if (responseString.length !== 0) {
-            document.getElementById("minSide_login").style.visibility = "hidden";
+            document.getElementById("minSide_sok_opp_bruker").style.visibility = "visible";
             return JSON.parse(responseString);
         }
     }).then(function (result) {
