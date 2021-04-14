@@ -81,9 +81,9 @@ function logoutUser() {
         error: function (error) {
             console.log(error);
             if (error.status === 400) {
-                document.getElementById("index-message").innerHTML = "Du var ikke logget inn";
+                document.getElementById("headline-message").innerHTML = "Du var ikke logget inn";
             } else {
-                document.getElementById("index-message").innerHTML = "Ukjent feil";
+                document.getElementById("headline-message").innerHTML = "Ukjent feil ved utlogging";
             }
         }
     });
