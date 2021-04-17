@@ -18,6 +18,7 @@
                 <li><a href="login.html">Logg inn</a></li>
                 <li><a href="alleUsers.html">Vis alle brukere</a></li>
                 <li><a href="minSide.html">Min side</a></li>
+                <li><a href="game.html">Spill</a></li>
             </ul>
             <div class="logoutUser">
                 <button onclick="logoutUser()">Logg out</button>
@@ -28,17 +29,6 @@
     <h1>Min side</h1>
     <p id="minSide-brukernavn"><a href="login.html">Logg inn</a> for å vise data her</p>
     <p id="minSide-email"></p>
-    <div id="minSide_sok_opp_bruker" style="visibility: hidden">
-        <h2>Søk opp bruker</h2>
-
-        <form name="inputForm" id="inputForm">
-            <label  for="username">Username</label> <br/>
-            <input type="text" id="username"> <br/>
-        </form>
-
-        <button class="submit-button" onclick="findUser()">Søk</button>
-        <p id="minSide-message"></p>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>

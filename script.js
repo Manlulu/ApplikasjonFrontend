@@ -124,7 +124,6 @@ function fetchMinSide() {
             return response.text();
         }).then(function (responseString) {
         if (responseString.length !== 0) {
-            document.getElementById("minSide_sok_opp_bruker").style.visibility = "visible";
             return JSON.parse(responseString);
         }
     }).then(function (result) {
@@ -135,7 +134,36 @@ function fetchMinSide() {
         console.log("En error: " + error);
     });
 
-    startBackend();
+    startBackend(); // TODO kan denne fjernes?
+}
+
+function fetchGame() {
+    let userToken = window.localStorage.getItem("userToken");
+
+    let token = {
+        "token": userToken
+    };
+
+    fetch(baseUrl + "/user", {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(token)
+    })
+        .then(function (response) {
+            return response.text();
+        }).then(function (responseString) {
+        if (responseString.length !== 0) {
+            document.getElementById("minSide_sok_opp_bruker").style.visibility = "visible";
+            return JSON.parse(responseString);
+        }
+    }).catch((error) => {
+        console.log("En error: " + error);
+    });
+
+    startBackend(); // TODO kan denne fjernes?
 }
 
 function findUser() {
@@ -152,7 +180,15 @@ function findUser() {
         success: function (response) {
             console.log("Success: " + response);
             let jsonResponse = JSON.parse(response);
-            document.getElementById("minSide-message").innerHTML = "Brukernavn: " + jsonResponse.username + ". E-post: " + jsonResponse.email;
+
+            let a = document.createElement('a');
+            let link = document.createTextNode(jsonResponse.username);
+            a.appendChild(link);
+            a.title = "Gå til brukeren " + jsonResponse.username;
+            a.href = "index.html";
+            document.getElementById("minSide-message").innerHTML = "Bruker: ";
+            document.getElementById("minSide-message").appendChild(a);
+
         },
         error: function (error) {
             console.log(error);

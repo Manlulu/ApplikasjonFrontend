@@ -26,24 +26,22 @@
         </div>
     </div>
 
-    <h1>Opprett bruker</h1>
-    <p>Skriv inn brukernavn og passord</p>
+    <h1>Spill</h1>
+    <div id="minSide_sok_opp_bruker" style="visibility: hidden">
+        <h2>Søk opp bruker</h2>
 
-    <form name="inputForm" id="inputForm">
-        <label id="asd" for="username">Username</label> <br/>
-        <input type="text" id="username"> <br/>
-        <label for="password">Password</label> <br/>
-        <input type="text" id="password"> <br/>
-        <label for="email">Email</label> <br/>
-        <input type="text" id="email"> <br/>
+        <form name="inputForm" id="inputForm">
+            <label  for="username">Username</label> <br/>
+            <input type="text" id="username"> <br/>
+        </form>
 
-    </form>
-    <button class="submit-button" onclick="createUser()">Opprett bruker</button>
-    <p id="createUser-message"></p>
+        <button class="submit-button" onclick="findUser()">Søk</button>
+        <p id="minSide-message"></p>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <script>window.onload = startBackend;</script>
+    <script>window.onload = fetchGame;</script>
 </div>
 </body>
 </html>
