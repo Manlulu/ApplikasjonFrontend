@@ -137,43 +137,6 @@ function fetchMinSide() {
     startBackend(); // TODO kan denne fjernes?
 }
 
-
-
-function findUser() {
-    let user = {
-        "username": document.getElementById("username").value,
-    };
-
-    $.ajax({
-        url: baseUrl + "/findUser",
-        dataType: "text",
-        type: "post",
-        contentType: "application/json",
-        data: JSON.stringify(user),
-        success: function (response) {
-            console.log("Success: " + response);
-            let jsonResponse = JSON.parse(response);
-
-            let a = document.createElement('a');
-            let link = document.createTextNode(jsonResponse.username);
-            a.appendChild(link);
-            a.title = "Gå til brukeren " + jsonResponse.username;
-            a.href = "index.html";
-            document.getElementById("minSide-message").innerHTML = "Bruker: ";
-            document.getElementById("minSide-message").appendChild(a);
-
-        },
-        error: function (error) {
-            console.log(error);
-            if (error.status === 400) {
-                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
-            } else {
-                document.getElementById("login-message").innerHTML = "Ukjent feil";
-            }
-        }
-    });
-}
-
 function startBackend() {
     let userToken = window.localStorage.getItem("userToken");
 

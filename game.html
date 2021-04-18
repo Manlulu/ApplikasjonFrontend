@@ -9,8 +9,7 @@
 <div id="container">
     <div id="header_menu">
         <div id="headline">
-            <a href="index.html"><h1 id="index-message">Dette er en enkel frontend (Backend ikke startet. Vent
-                litt..)</h1></a>
+            <a href="index.html"><h1 id="index-message">Dette er en enkel frontend (Backend ikke startet. Vent litt..)</h1></a>
             <p style="float:right" id="headline-message">Her vises feil ved utlogging</p>
         </div>
         <div id="nav">
@@ -37,9 +36,19 @@
             <button style="float: left; margin: 0 10px 0 10px;" class="submit-button" onclick="findUser()">Søk</button>
 
         </div>
-        <p id="minSide-message">tekst</p>
+        <p id="minSide-message"></p>
     </div>
 
+    <div style="width: 900px; height: 600px; background-color: darkgrey; margin: auto;  clear: both">
+        <div style="width: 50%; float: left; height: 100%; background-color: deepskyblue">
+            <h2 style="text-align: center">You</h2>
+            <div id="game_player"></div>
+        </div>
+        <div style="width: 50%; float: left; height: 100%; background-color: indianred">
+            <h2 style="text-align: center">Other player</h2>
+            <div id="game_other"></div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
