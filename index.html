@@ -2,33 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>En enkel frontend</title>
 </head>
 <body>
 <div id="container">
-    <div id="header_menu">
-        <div id="headline">
-            <a href="index.html"><h1 id="index-message">Dette er en enkel frontend (Backend ikke startet. Vent litt..)</h1></a>
-            <p style="float:right" id="headline-message">Her vises feil ved utlogging</p>
-        </div>
-        <div id="nav">
-            <ul>
-                <li><a href="createUser.html">Opprett bruker</a></li>
-                <li><a href="login.html">Logg inn</a></li>
-                <li><a href="alleUsers.html">Vis alle brukere</a></li>
-                <li><a href="minSide.html">Min side</a></li>
-                <li><a href="game.html">Spill</a></li>
-            </ul>
-            <div class="logoutUser">
-                <button onclick="logoutUser()">Logg out</button>
-            </div>
-        </div>
-    </div>
+    <div id="header_menu"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <script>window.onload = startBackend;</script>
+    <script src="script/script.js"></script>
+    <script src="script/headerMenu.js"></script>
+    <script>window.onload = createPage;</script>
 </div>
 </body>
 </html>
