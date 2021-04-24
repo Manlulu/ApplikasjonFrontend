@@ -1,86 +1,102 @@
-function createPage() {
+function createHeader() {
     startBackend();
     createHeaderMenu();
 }
 
 function createHeaderMenu() {
+    let feilmeldingLogout = createParagraphForFeilmelding("headline-message", "Her vises feil ved utlogging")
+    let overskrift = createOverskrift();
+    let menuLinks = createHeaderMenuLinks();
+    let btnLogout = createLogoutButton();
+
+    let divHeadline = createDiv("headline");
+    divHeadline.appendChild(overskrift);
+    divHeadline.appendChild(feilmeldingLogout);
+
+    let navBar = createDiv("nav");
+    navBar.appendChild(menuLinks);
+    navBar.appendChild(btnLogout);
+
     let headerMenu = document.getElementById("header_menu");
+    headerMenu.appendChild(divHeadline);
+    headerMenu.appendChild(navBar);
+}
 
-    let headline = document.createElement("div");
-    headline.setAttribute("id", "headline");
-    headerMenu.appendChild(headline);
+function createLogoutButton() {
+    let btnLogout = createButtonWithOnClick("logoutUser()");
+    let divLogout = createDiv("logoutUser");
+    divLogout.appendChild(btnLogout);
+    return divLogout;
+}
 
-    let htmlAnchorElement = document.createElement("a");
-    let htmlHeadingElement = document.createElement("h1");
-    htmlHeadingElement.innerHTML = "Dette er en enkel frontend (Backend ikke startet. Vent litt..)";
-    htmlHeadingElement.setAttribute("id", "index-message");
+function createOverskrift() {
+    let linkIndex = createLink("Tilbake til start", "index.html", null);
+    let h1headline = createh1("index-message", "Dette er en enkel frontend (Backend ikke startet. Vent litt..)")
+    linkIndex.appendChild(h1headline);
+    return linkIndex;
+}
 
-    htmlAnchorElement.appendChild(htmlHeadingElement);
-    htmlAnchorElement.href = "index.html";
+function createHeaderMenuLinks() {
+    let liCreateUser = document.createElement("li");
+    let liLogin = document.createElement("li");
+    let liAlleUsers = document.createElement("li");
+    let liMinSide = document.createElement("li");
+    let liGame = document.createElement("li");
 
-    headline.appendChild(htmlAnchorElement);
+    let linkCreateUser = createLink("Opprett bruker", "createUser.html", "Opprett brukere");
+    let linkLogin = createLink("Logg inn", "login.html", "Logg inn");
+    let linkVisAlle = createLink("Alle brukere", "alleUsers.html", "Vis alle brukere");
+    let linkMinSide = createLink("Min side", "minSide.html", "Min side");
+    let linkSpill = createLink("Spill", "game.html", "Spill");
 
-    let htmlParagraphElement = document.createElement("p");
-    htmlParagraphElement.style.float = "right";
-    htmlParagraphElement.setAttribute("id", "headline-message");
-    htmlParagraphElement.innerHTML = "Her vises feil ved utlogging";
+    liCreateUser.appendChild(linkCreateUser);
+    liLogin.appendChild(linkLogin);
+    liAlleUsers.appendChild(linkVisAlle);
+    liMinSide.appendChild(linkMinSide);
+    liGame.appendChild(linkSpill);
 
-    headline.appendChild(htmlParagraphElement);
+    let ul = document.createElement("ul");
+    ul.appendChild(liCreateUser);
+    ul.appendChild(liLogin);
+    ul.appendChild(liAlleUsers);
+    ul.appendChild(liMinSide);
+    ul.appendChild(liGame);
+    return ul;
+}
 
+function createParagraphForFeilmelding(id, text) {
+    let paragraph = document.createElement("p");
+    paragraph.style.float = "right";
+    paragraph.setAttribute("id", id);
+    paragraph.innerHTML = text;
+    return paragraph;
+}
+
+function createh1(id, text) {
+    let h1headline = document.createElement("h1");
+    h1headline.innerHTML = text;
+    h1headline.setAttribute("id", id);
+    return h1headline;
+}
+
+function createDiv(id) {
     let nav = document.createElement("div");
-    nav.setAttribute("id", "nav");
-    let htmluListElement = document.createElement("ul");
-    let listElementCreateUser = document.createElement("li");
-    let listElementLogin = document.createElement("li");
-    let listElementAlleUsers = document.createElement("li");
-    let listElementMinSide = document.createElement("li");
-    let listElementGame = document.createElement("li");
+    nav.setAttribute("id", id);
+    return nav;
+}
 
-    let anchorCreateUser = document.createElement("a");
-    anchorCreateUser.title = "Opprett bruker";
-    anchorCreateUser.href = "createUser.html";
-    anchorCreateUser.innerHTML = "Opprett bruker";
-
-    let anchorLogin = document.createElement("a");
-    anchorLogin.title = "Logg inn";
-    anchorLogin.href = "login.html";
-    anchorLogin.innerHTML = "Logg inn";
-
-    let anchorVisAlle = document.createElement("a");
-    anchorVisAlle.title = "Alle brukere";
-    anchorVisAlle.href = "alleUsers.html";
-    anchorVisAlle.innerHTML = "Vis alle brukere";
-
-    let anchorMinSide = document.createElement("a");
-    anchorMinSide.title = "Min side";
-    anchorMinSide.href = "minSide.html";
-    anchorMinSide.innerHTML = "Min side";
-
+function createLink(title, href, innerHtml) {
     let anchorGame = document.createElement("a");
-    anchorGame.title = "Spill";
-    anchorGame.href = "game.html";
-    anchorGame.innerHTML = "Spill";
+    anchorGame.title = title;
+    anchorGame.href = href;
+    anchorGame.innerHTML = innerHtml;
+    return anchorGame;
+}
 
-    listElementCreateUser.appendChild(anchorCreateUser);
-    listElementLogin.appendChild(anchorLogin);
-    listElementAlleUsers.appendChild(anchorVisAlle);
-    listElementMinSide.appendChild(anchorMinSide);
-    listElementGame.appendChild(anchorGame);
-    htmluListElement.appendChild(listElementCreateUser);
-    htmluListElement.appendChild(listElementLogin);
-    htmluListElement.appendChild(listElementAlleUsers);
-    htmluListElement.appendChild(listElementMinSide);
-    htmluListElement.appendChild(listElementGame);
-    nav.appendChild(htmluListElement);
-    headerMenu.appendChild(nav);
-
-    let divLogout = document.createElement("div");
-    divLogout.setAttribute("class", "logoutUser");
+function createButtonWithOnClick(onclick) {
     let btnLogout = document.createElement("button");
-    btnLogout.setAttribute("onclick", "logoutUser()");
+    btnLogout.setAttribute("onclick", onclick);
     // btnLogout.onclick = logoutUser;
     btnLogout.innerHTML = "Logg out";
-
-    divLogout.appendChild(btnLogout);
-    nav.appendChild(divLogout);
+    return btnLogout;
 }

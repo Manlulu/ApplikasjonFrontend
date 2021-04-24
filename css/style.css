@@ -44,7 +44,7 @@ input[type=text] {
     margin: 0 20px;
 }
 
-#nav .logoutUser button {
+#nav #logoutUser button {
     float: right;
     height: 35px;
     width: 100px;
@@ -52,7 +52,7 @@ input[type=text] {
     color: white;
 }
 
-#nav .logoutUser button:hover {
+#nav #logoutUser button:hover {
     background-color: red;
 }
 
