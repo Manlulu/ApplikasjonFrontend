@@ -64,7 +64,7 @@ function setupPlayerData(responseString) {
     ul.appendChild(level);
 
     username.innerHTML = "Bruker: ".bold() + user.username;
-    level.innerHTML = "Level: ".bold() + " 7 (Ikke implementert)";
+    level.innerHTML = "Level: ".bold() + user.level;
 
     return JSON.parse(responseString);
 }
@@ -74,6 +74,7 @@ function setupEnemyData(responseString) {
 
     let ul = document.createElement('ul');
     ul.setAttribute('id', 'gameList');
+    document.getElementById("game_other").innerHTML = "";
     document.getElementById("game_other").appendChild(ul);
     let username = document.createElement('li');
     let level = document.createElement('li');
@@ -81,7 +82,7 @@ function setupEnemyData(responseString) {
     ul.appendChild(level);
 
     username.innerHTML = "Bruker: ".bold() + user.username;
-    level.innerHTML = "Level: ".bold() + " 8 (Ikke implementert)";
+    level.innerHTML = "Level: ".bold() + user.level;
 
     return JSON.parse(responseString);
 }
