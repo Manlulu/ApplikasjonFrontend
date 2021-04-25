@@ -18,7 +18,12 @@
     <script src="script/script.js"></script>
     <script src="script/createTable.js"></script>
     <script src="script/headerMenu.js"></script>
-    <script>window.onload = createHeader;</script>
+    <script>
+        window.onload = function () {
+            createHeader();
+            fetchAllUsers();
+        }
+    </script>
 </div>
 </body>
 </html>

@@ -37,7 +37,12 @@
     <script src="script/script.js"></script>
     <script src="script/spill.js"></script>
     <script src="script/headerMenu.js"></script>
-    <script>window.onload = createHeader;</script>
+    <script>
+        window.onload = function () {
+            createHeader();
+            fetchGame();
+        }
+    </script>
 </div>
 </body>
 </html>

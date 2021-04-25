@@ -101,7 +101,7 @@ function fetchAllUsers() {
         }
     )
 
-    startBackend();
+    startBackend(); // For å endre overskrift til "Backen statet"
 }
 
 function fetchMinSide() {
@@ -133,7 +133,7 @@ function fetchMinSide() {
         console.log("En error: " + error);
     });
 
-    startBackend(); // TODO kan denne fjernes?
+    startBackend(); // For å endre overskrift til "Backen statet"
 }
 
 function startBackend() {

@@ -1,9 +1,4 @@
 function createHeader() {
-    startBackend();
-    createHeaderMenu();
-}
-
-function createHeaderMenu() {
     let feilmeldingLogout = createParagraphForFeilmelding("headline-message", "Her vises feil ved utlogging")
     let overskrift = createOverskrift();
     let menuLinks = createHeaderMenuLinks();

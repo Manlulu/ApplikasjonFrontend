@@ -22,7 +22,7 @@ function fetchGame() {
         console.log("En error: " + error);
     });
 
-    startBackend(); // TODO kan denne fjernes?
+    startBackend(); // For å endre overskrift til "Backen statet"
 }
 
 function findUser() {
