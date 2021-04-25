@@ -1,5 +1,5 @@
-function createTable(data) {
-    let table = document.querySelector("table");
+function createTable(data, id) {
+    let table = document.getElementById(id);
     createUsertableHead(table, Object.keys(data[0]))
     createUsertableBody(table, data);
 }

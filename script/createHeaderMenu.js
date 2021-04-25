@@ -1,8 +1,8 @@
 function createHeader() {
     let feilmeldingLogout = createParagraphForFeilmelding("headline-message", "Her vises feil ved utlogging")
-    let overskrift = createOverskrift();
+    let overskrift = createOverskrift("Tilbake til start", "index.html", "index-message", "Dette er en enkel frontend (Backend ikke startet. Vent litt..)");
     let menuLinks = createHeaderMenuLinks();
-    let btnLogout = createLogoutButton();
+    let btnLogout = createButton("logoutUser()", "logoutUser");
 
     let divHeadline = createDiv("headline");
     divHeadline.appendChild(overskrift);
@@ -17,16 +17,16 @@ function createHeader() {
     headerMenu.appendChild(navBar);
 }
 
-function createLogoutButton() {
-    let btnLogout = createButtonWithOnClick("logoutUser()");
-    let divLogout = createDiv("logoutUser");
+function createButton(onclick, div) {
+    let btnLogout = createButtonWithOnClick(onclick);
+    let divLogout = createDiv(div);
     divLogout.appendChild(btnLogout);
     return divLogout;
 }
 
-function createOverskrift() {
-    let linkIndex = createLink("Tilbake til start", "index.html", null);
-    let h1headline = createh1("index-message", "Dette er en enkel frontend (Backend ikke startet. Vent litt..)")
+function createOverskrift(title, href, id, text) {
+    let linkIndex = createLink(title, href, null);
+    let h1headline = createh1(id, text)
     linkIndex.appendChild(h1headline);
     return linkIndex;
 }
