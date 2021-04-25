@@ -25,22 +25,22 @@
     <div style="width: 900px; height: 600px; background-color: darkgrey; margin: auto;  clear: both">
         <div style="width: 50%; float: left; height: 100%; background-color: deepskyblue">
             <h2 style="text-align: center">You</h2>
-            <div id="game_player"></div>
+            <div id="game_player_data"></div>
         </div>
         <div style="width: 50%; float: left; height: 100%; background-color: indianred">
             <h2 style="text-align: center">Other player</h2>
-            <div id="game_other"></div>
+            <div id="game_other_data"></div>
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script/script.js"></script>
-    <script src="script/spill.js"></script>
+    <script src="script/user.js"></script>
+    <script src="script/game.js"></script>
     <script src="script/createHeaderMenu.js"></script>
     <script>
         window.onload = function () {
             createHeader();
-            fetchGame();
+            setupGamePage();
         }
     </script>
 </div>

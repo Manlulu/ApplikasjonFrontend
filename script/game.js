@@ -1,4 +1,4 @@
-function fetchGame() {
+function setupGamePage() {
     let userToken = window.localStorage.getItem("userToken");
 
     let token = {
@@ -16,7 +16,7 @@ function fetchGame() {
         return response.text();
     }).then(function (responseString) {
         if (responseString.length !== 0) {
-            setupPlayerData(responseString);
+            setupPlayer(responseString, "game_player_data");
         }
     }).catch((error) => {
         console.log("En error: " + error);
@@ -38,8 +38,7 @@ function findUser() {
         data: JSON.stringify(user),
         success: function (response) {
             document.getElementById("minSide-message").innerHTML = "";
-            setupEnemyData(response);
-
+            setupPlayer(response, "game_other_data");
         },
         error: function (error) {
             console.log(error);
@@ -52,37 +51,26 @@ function findUser() {
     });
 }
 
-function setupPlayerData(responseString) {
-    const user = JSON.parse(responseString);
+function setupPlayer(data, id) {
+    const user = JSON.parse(data);
 
     let ul = document.createElement('ul');
-    ul.setAttribute('id', 'gameList');
-    document.getElementById("game_player").appendChild(ul);
+    ul.setAttribute('id', "gameList");
+    document.getElementById(id).innerHTML = "";
+    document.getElementById(id).appendChild(ul);
+
     let username = document.createElement('li');
     let level = document.createElement('li');
+    let win = document.createElement('li');
+    let lost = document.createElement('li');
+
     ul.appendChild(username);
     ul.appendChild(level);
+    ul.appendChild(win);
+    ul.appendChild(lost);
 
     username.innerHTML = "Bruker: ".bold() + user.username;
     level.innerHTML = "Level: ".bold() + user.level;
-
-    return JSON.parse(responseString);
-}
-
-function setupEnemyData(responseString) {
-    const user = JSON.parse(responseString);
-
-    let ul = document.createElement('ul');
-    ul.setAttribute('id', 'gameList');
-    document.getElementById("game_other").innerHTML = "";
-    document.getElementById("game_other").appendChild(ul);
-    let username = document.createElement('li');
-    let level = document.createElement('li');
-    ul.appendChild(username);
-    ul.appendChild(level);
-
-    username.innerHTML = "Bruker: ".bold() + user.username;
-    level.innerHTML = "Level: ".bold() + user.level;
-
-    return JSON.parse(responseString);
+    win.innerHTML = "Win: ".bold() + user.win;
+    lost.innerHTML = "Lose: ".bold() + user.lost;
 }
