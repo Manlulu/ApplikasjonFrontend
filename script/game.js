@@ -17,9 +17,35 @@ function setupGamePage() {
     }).then(function (responseString) {
         if (responseString.length !== 0) {
             setupPlayer(responseString, "game_player_data");
+            setupPlayerChallenge();
         }
     }).catch((error) => {
         console.log("En error: " + error);
+    });
+}
+
+function setupPlayerChallenge() {
+    let token = window.localStorage.getItem("userToken");
+
+    $.ajax({
+        url: baseUrl + "/findChallenge",
+        dataType: "text",
+        type: "post",
+        contentType: "application/json",
+        data: token,
+        success: function (response) {
+            let challenge = JSON.parse(response);
+            document.getElementById("game_player_attack_headline").innerHTML = challenge.oponentUsername + " is attacking!";
+            window.localStorage.setItem("oponent", challenge.oponentUsername);
+        },
+        error: function (error) {
+            console.log(error);
+            if (error.status === 400) {
+                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
+            } else {
+                document.getElementById("login-message").innerHTML = "Ukjent feil";
+            }
+        }
     });
 }
 
@@ -37,6 +63,7 @@ function findUser() {
         success: function (response) {
             document.getElementById("minSide-message").innerHTML = "";
             setupPlayer(response, "game_other_data");
+            document.getElementById("game_enemy_attack").style.visibility = "visible";
         },
         error: function (error) {
             console.log(error);
@@ -73,17 +100,23 @@ function setupPlayer(data, id) {
     lost.innerHTML = "Lose: ".bold() + user.lost;
 }
 
-function challengePlayer() {
+function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDefend2, gameDefend3) {
+
+    let oponent = window.localStorage.getItem("oponent");
+    if(oponent == null) {
+        oponent = document.getElementById("username").value;
+    }
+
     let moves = {
         "token": window.localStorage.getItem("userToken"),
-        "oponentUsername":  document.getElementById("username").value, // TODO - Må endres
+        "oponentUsername":  oponent, // TODO - Må endres
 
-        "gameAttack1": document.querySelector('input[name="game_attack_1"]:checked').value,
-        "gameAttack2": document.querySelector('input[name="game_attack_2"]:checked').value,
-        "gameAttack3": document.querySelector('input[name="game_attack_3"]:checked').value,
-        "gameDefend1": document.querySelector('input[name="game_defend_1"]:checked').value,
-        "gameDefend2": document.querySelector('input[name="game_defend_2"]:checked').value,
-        "gameDefend3": document.querySelector('input[name="game_defend_3"]:checked').value
+        "gameAttack1": document.querySelector('input[name=' + gameAttack1 + ']:checked').value,
+        "gameAttack2": document.querySelector('input[name=' + gameAttack2 + ']:checked').value,
+        "gameAttack3": document.querySelector('input[name=' + gameAttack3 + ']:checked').value,
+        "gameDefend1": document.querySelector('input[name=' + gameDefend1 + ']:checked').value,
+        "gameDefend2": document.querySelector('input[name=' + gameDefend2 + ']:checked').value,
+        "gameDefend3": document.querySelector('input[name=' + gameDefend3 + ']:checked').value
     };
 
     $.ajax({
@@ -94,6 +127,7 @@ function challengePlayer() {
         data: JSON.stringify(moves),
         success: function (response) {
             document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
+            document.getElementById("game-player_challenge-message").innerHTML = "Challenge accepted!";
         },
         error: function (error) {
             console.log(error);

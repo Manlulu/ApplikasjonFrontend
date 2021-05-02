@@ -26,14 +26,81 @@
         <div style="width: 50%; float: left; height: 100%; background-color: deepskyblue">
             <h2 style="text-align: center">You</h2>
             <div id="game_player_data"></div>
+            <div id="game_player_attack">
+                <label id="game_player_attack_headline"><strong>[...] attacked you!</strong></label>
+                <!-- Attack -->
+                <form>
+                    <label><strong>Attack 1: </strong></label>
+                    <input type="radio" id="game_player_attack_upper_1" name="game_player_attack_1" value="1">
+                    <label for="game_player_attack_upper_1">upper</label>
+                    <input type="radio" id="game_player_attack_mid_1" name="game_player_attack_1" value="2">
+                    <label for="game_player_attack_mid_1">middle</label>
+                    <input type="radio" id="game_player_attack_down_1" name="game_player_attack_1" value="3">
+                    <label for="game_player_attack_down_1">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Attack 2: </strong></label>
+                    <input type="radio" id="game_player_attack_upper_2" name="game_player_attack_2" value="4">
+                    <label for="game_player_attack_upper_2">upper</label>
+                    <input type="radio" id="game_player_attack_mid_2" name="game_player_attack_2" value="5">
+                    <label for="game_player_attack_mid_2">middle</label>
+                    <input type="radio" id="game_player_attack_down_2" name="game_player_attack_2" value="6">
+                    <label for="game_player_attack_down_2">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Attack 3: </strong></label>
+                    <input type="radio" id="game_player_attack_upper_3" name="game_player_attack_3" value="7">
+                    <label for="game_player_attack_upper_3">upper</label>
+                    <input type="radio" id="game_player_attack_mid_3" name="game_player_attack_3" value="8">
+                    <label for="game_player_attack_mid_3">middle</label>
+                    <input type="radio" id="game_player_attack_down_3" name="game_player_attack_3" value="9">
+                    <label for="game_player_attack_down_3">down</label>
+                </form>
+
+                <!-- Defend-->
+
+                <form>
+                    <label><strong>Defend 1: </strong></label>
+                    <input type="radio" id="game_player_defend_upper_1" name="game_player_defend_1" value="10">
+                    <label for="game_player_defend_upper_1">upper</label>
+                    <input type="radio" id="game_player_defend_mid_1" name="game_player_defend_1" value="11">
+                    <label for="game_player_defend_mid_1">middle</label>
+                    <input type="radio" id="game_player_defend_down_1" name="game_player_defend_1" value="12">
+                    <label for="game_player_defend_down_1">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Defend 2: </strong></label>
+                    <input type="radio" id="game_player_defend_upper_2" name="game_player_defend_2" value="13">
+                    <label for="game_player_defend_upper_2">upper</label>
+                    <input type="radio" id="game_player_defend_mid_2" name="game_player_defend_2" value="14">
+                    <label for="game_player_defend_mid_2">middle</label>
+                    <input type="radio" id="game_player_defend_down_2" name="game_player_defend_2" value="15">
+                    <label for="game_player_defend_down_2">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Defend 3: </strong></label>
+                    <input type="radio" id="game_player_defend_upper_3" name="game_player_defend_3" value="16">
+                    <label for="game_player_defend_upper_3">upper</label>
+                    <input type="radio" id="game_player_defend_mid_3" name="game_player_defend_3" value="17">
+                    <label for="game_player_defend_mid_3">middle</label>
+                    <input type="radio" id="game_player_defend_down_3" name="game_player_defend_3" value="18">
+                    <label for="game_player_defend_down_3">down</label>
+                </form>
+
+                <button id="game_player_challenge_button_deactivated"
+                        onclick="challengePlayer('game_player_attack_1', 'game_player_attack_2', 'game_player_attack_3', 'game_player_defend_1', 'game_player_defend_2', 'game_player_defend_3')">Challenge!</button>
+                <p id="game-player_challenge-message">...</p>
+            </div>
         </div>
         <div style="width: 50%; float: left; height: 100%; background-color: indianred">
             <h2 style="text-align: center">Other player</h2>
             <div id="game_other_data"></div>
-            <div id="game_enemy_attack">
-
+            <div id="game_enemy_attack" style="visibility: hidden">
                 <!-- Attack -->
-
                 <form>
                     <label><strong>Attack 1: </strong></label>
                     <input type="radio" id="game_attack_upper_1" name="game_attack_1" value="1">
@@ -96,7 +163,8 @@
                     <label for="game_defend_down_3">down</label>
                 </form>
 
-                <button id="game_challenge_button_deactivated" onclick="challengePlayer()">Challenge!</button>
+                <button id="game_challenge_button_deactivated"
+                        onclick="challengePlayer('game_attack_1', 'game_attack_2', 'game_attack_3', 'game_defend_1', 'game_defend_2', 'game_defend_3')">Challenge!</button>
                 <p id="game-challenge-message">...</p>
             </div>
         </div>
