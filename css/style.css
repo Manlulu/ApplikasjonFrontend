@@ -30,6 +30,28 @@ input[type=text] {
     color: white;
 }
 
+#game_challenge_button_deactivated {
+    background-color: lightgray;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #4caf50;
+}
+
+#game_challenge_button_activated {
+    transition-duration: 0.4s;
+    background-color: lightgreen;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #4caf50;
+}
+
+#game_challenge_button_activated:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
 #login-message {
     color: red;
 }

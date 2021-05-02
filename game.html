@@ -15,7 +15,7 @@
 
         <div style="width: 30%">
 
-            <input style="float: left" type="text" id="username" placeholder="Username" />
+            <input style="float: left" type="text" id="username" placeholder="Username"/>
             <button style="float: left; margin: 0 10px 0 10px;" class="submit-button" onclick="findUser()">Søk</button>
 
         </div>
@@ -30,6 +30,75 @@
         <div style="width: 50%; float: left; height: 100%; background-color: indianred">
             <h2 style="text-align: center">Other player</h2>
             <div id="game_other_data"></div>
+            <div id="game_enemy_attack">
+
+                <!-- Attack -->
+
+                <form>
+                    <label><strong>Attack 1: </strong></label>
+                    <input type="radio" id="game_attack_upper_1" name="game_attack_1" value="1">
+                    <label for="game_attack_upper_1">upper</label>
+                    <input type="radio" id="game_attack_mid_1" name="game_attack_1" value="2">
+                    <label for="game_attack_mid_1">middle</label>
+                    <input type="radio" id="game_attack_down_1" name="game_attack_1" value="3">
+                    <label for="game_attack_down_1">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Attack 2: </strong></label>
+                    <input type="radio" id="game_attack_upper_2" name="game_attack_2" value="4">
+                    <label for="game_attack_upper_2">upper</label>
+                    <input type="radio" id="game_attack_mid_2" name="game_attack_2" value="5">
+                    <label for="game_attack_mid_2">middle</label>
+                    <input type="radio" id="game_attack_down_2" name="game_attack_2" value="6">
+                    <label for="game_attack_down_2">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Attack 3: </strong></label>
+                    <input type="radio" id="game_attack_upper_3" name="game_attack_3" value="7">
+                    <label for="game_attack_upper_3">upper</label>
+                    <input type="radio" id="game_attack_mid_3" name="game_attack_3" value="8">
+                    <label for="game_attack_mid_3">middle</label>
+                    <input type="radio" id="game_attack_down_3" name="game_attack_3" value="9">
+                    <label for="game_attack_down_3">down</label>
+                </form>
+
+                <!-- Defend-->
+
+                <form>
+                    <label><strong>Defend 1: </strong></label>
+                    <input type="radio" id="game_defend_upper_1" name="game_defend_1" value="10">
+                    <label for="game_defend_upper_1">upper</label>
+                    <input type="radio" id="game_defend_mid_1" name="game_defend_1" value="11">
+                    <label for="game_defend_mid_1">middle</label>
+                    <input type="radio" id="game_defend_down_1" name="game_defend_1" value="12">
+                    <label for="game_defend_down_1">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Defend 2: </strong></label>
+                    <input type="radio" id="game_defend_upper_2" name="game_defend_2" value="13">
+                    <label for="game_defend_upper_2">upper</label>
+                    <input type="radio" id="game_defend_mid_2" name="game_defend_2" value="14">
+                    <label for="game_defend_mid_2">middle</label>
+                    <input type="radio" id="game_defend_down_2" name="game_defend_2" value="15">
+                    <label for="game_defend_down_2">down</label>
+                </form>
+
+                <form>
+                    <label><strong>Defend 3: </strong></label>
+                    <input type="radio" id="game_defend_upper_3" name="game_defend_3" value="16">
+                    <label for="game_defend_upper_3">upper</label>
+                    <input type="radio" id="game_defend_mid_3" name="game_defend_3" value="17">
+                    <label for="game_defend_mid_3">middle</label>
+                    <input type="radio" id="game_defend_down_3" name="game_defend_3" value="18">
+                    <label for="game_defend_down_3">down</label>
+                </form>
+
+                <button id="game_challenge_button_deactivated" onclick="challengePlayer()">Challenge!</button>
+                <p id="game-challenge-message">...</p>
+            </div>
         </div>
     </div>
 
