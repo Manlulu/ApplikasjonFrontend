@@ -75,7 +75,7 @@ function logoutUser() {
         success: function (response) {
             console.log("Success: " + response);
             window.localStorage.setItem("userToken", null);
-            window.location.reload(true);
+            window.location = "login.html";
         },
         error: function (error) {
             console.log(error);
@@ -88,7 +88,8 @@ function logoutUser() {
     });
 }
 
-function startBackend() {
+function setupPage() {
+    createHeader(false);
     let userToken = window.localStorage.getItem("userToken");
 
     let token = {
@@ -102,13 +103,26 @@ function startBackend() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(token)
-    })
-        .then(function (result) {
+    }).then(function (response) {
+        document.getElementById("index-message").innerHTML = "Dette er en enkel frontend (Backend startet)";
+        document.getElementById("index-message").style.backgroundColor = "green";
+
+        if (response.status === 200) {
+            return response.text();
+        }
+    }).then(function (responseString) {
+        if (responseString.length !== 0) {
+            return JSON.parse(responseString);
+        }
+    }).then(function (result) {
+        if (result) {
             console.log(result);
+            createHeader(true);
             document.getElementById("index-message").innerHTML = "Dette er en enkel frontend (Backend startet)";
             document.getElementById("index-message").style.backgroundColor = "green";
-        })
-        .catch((error) => {
-            console.log("En error: " + error);
-        });
+        }
+
+    }).catch((error) => {
+        console.log("En error: " + error);
+    });
 }

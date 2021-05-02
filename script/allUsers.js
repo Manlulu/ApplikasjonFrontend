@@ -10,6 +10,4 @@ function setupAllUsersPage() {
             document.getElementById("visAlle").innerHTML = "Det er " + result + " registrerte brukere";
         }
     )
-
-    startBackend(); // For å endre overskrift til "Backen statet"
 }

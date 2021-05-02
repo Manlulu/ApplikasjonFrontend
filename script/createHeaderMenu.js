@@ -1,20 +1,24 @@
-function createHeader() {
+function createHeader(isLoggedIn) {
     let feilmeldingLogout = createParagraphForFeilmelding("headline-message", "Her vises feil ved utlogging")
     let overskrift = createOverskrift("Tilbake til start", "index.html", "index-message", "Dette er en enkel frontend (Backend ikke startet. Vent litt..)");
-    let menuLinks = createHeaderMenuLinks();
-    let btnLogout = createButton("logoutUser()", "logoutUser");
-
+    let menuLinks = createHeaderMenuLinks(isLoggedIn);
     let divHeadline = createDiv("headline");
+
     divHeadline.appendChild(overskrift);
     divHeadline.appendChild(feilmeldingLogout);
-
     let navBar = createDiv("nav");
+
     navBar.appendChild(menuLinks);
-    navBar.appendChild(btnLogout);
+
+    if (document.contains(document.getElementById("header_menu_content"))) {
+        document.getElementById("header_menu_content").remove();
+    }
+    let headerMenuContent = createDiv("header_menu_content");
+    headerMenuContent.appendChild(divHeadline);
+    headerMenuContent.appendChild(navBar);
 
     let headerMenu = document.getElementById("header_menu");
-    headerMenu.appendChild(divHeadline);
-    headerMenu.appendChild(navBar);
+    headerMenu.appendChild(headerMenuContent);
 }
 
 function createButton(onclick, div) {
@@ -31,31 +35,42 @@ function createOverskrift(title, href, id, text) {
     return linkIndex;
 }
 
-function createHeaderMenuLinks() {
+function createHeaderMenuLinks(isLoggedIn) {
     let liCreateUser = document.createElement("li");
-    let liLogin = document.createElement("li");
     let liAlleUsers = document.createElement("li");
-    let liMinSide = document.createElement("li");
-    let liGame = document.createElement("li");
 
     let linkCreateUser = createLink("Opprett bruker", "createUser.html", "Opprett brukere");
-    let linkLogin = createLink("Logg inn", "login.html", "Logg inn");
     let linkVisAlle = createLink("Alle brukere", "alleUsers.html", "Vis alle brukere");
-    let linkMinSide = createLink("Min side", "minSide.html", "Min side");
-    let linkSpill = createLink("Spill", "game.html", "Spill");
 
     liCreateUser.appendChild(linkCreateUser);
-    liLogin.appendChild(linkLogin);
     liAlleUsers.appendChild(linkVisAlle);
-    liMinSide.appendChild(linkMinSide);
-    liGame.appendChild(linkSpill);
 
     let ul = document.createElement("ul");
     ul.appendChild(liCreateUser);
-    ul.appendChild(liLogin);
     ul.appendChild(liAlleUsers);
-    ul.appendChild(liMinSide);
-    ul.appendChild(liGame);
+
+    if (isLoggedIn) {
+        // Logout
+        let btnLogout = createButton("logoutUser()", "logoutUser");
+        ul.appendChild(btnLogout);
+
+        let liGame = document.createElement("li");
+        let linkSpill = createLink("Spill", "game.html", "Spill");
+        liGame.appendChild(linkSpill);
+        ul.appendChild(liGame);
+
+        // Min side
+        let liMinSide = document.createElement("li");
+        let linkMinSide = createLink("Min side", "minSide.html", "Min side");
+        liMinSide.appendChild(linkMinSide);
+        ul.appendChild(liMinSide);
+    } else {
+        // Login
+        let linkLogin = createLink("Logg inn", "login.html", "Logg inn");
+        let liLogin = document.createElement("li");
+        liLogin.appendChild(linkLogin);
+        ul.appendChild(liLogin);
+    }
     return ul;
 }
 

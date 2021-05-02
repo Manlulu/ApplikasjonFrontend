@@ -12,20 +12,19 @@ function setupMinSide() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(token)
-    })
-        .then(function (response) {
-            return response.text();
-        }).then(function (responseString) {
+    }).then(function (response) {
+        return response.text();
+    }).then(function (responseString) {
         if (responseString.length !== 0) {
             return JSON.parse(responseString);
         }
     }).then(function (result) {
-        console.log(result);
-        document.getElementById("minSide-brukernavn").innerHTML = "Bruker: " + result.username;
-        document.getElementById("minSide-email").innerHTML = "E-post: " + result.email;
+        if(result !== undefined) {
+            console.log(result);
+            document.getElementById("minSide-brukernavn").innerHTML = "Bruker: " + result.username;
+            document.getElementById("minSide-email").innerHTML = "E-post: " + result.email;
+        }
     }).catch((error) => {
         console.log("En error: " + error);
     });
-
-    startBackend(); // For å endre overskrift til "Backen statet"
 }

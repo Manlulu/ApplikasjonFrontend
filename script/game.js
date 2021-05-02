@@ -21,8 +21,6 @@ function setupGamePage() {
     }).catch((error) => {
         console.log("En error: " + error);
     });
-
-    startBackend(); // For å endre overskrift til "Backen statet"
 }
 
 function findUser() {
