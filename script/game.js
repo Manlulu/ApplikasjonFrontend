@@ -37,6 +37,7 @@ function setupPlayerChallenge() {
             let challenge = JSON.parse(response);
             document.getElementById("game_player_attack_headline").innerHTML = challenge.oponentUsername + " is attacking!";
             window.localStorage.setItem("oponent", challenge.oponentUsername);
+            document.getElementById("game_player_attack").style.visibility = "visible";
         },
         error: function (error) {
             console.log(error);
@@ -103,9 +104,9 @@ function setupPlayer(data, id) {
 function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDefend2, gameDefend3) {
 
     let oponent = window.localStorage.getItem("oponent");
-    if(oponent == null) {
+    // if(oponent == null) {
         oponent = document.getElementById("username").value;
-    }
+    // }
 
     let moves = {
         "token": window.localStorage.getItem("userToken"),
@@ -138,4 +139,88 @@ function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gam
             }
         }
     });
+}
+
+// TODO: Skal dette inn i en egen .js fil?
+function fightPlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDefend2, gameDefend3) {
+
+    let oponent = window.localStorage.getItem("oponent");
+    if(oponent == null) {
+        oponent = document.getElementById("username").value;
+    }
+
+    let moves = {
+        "token": window.localStorage.getItem("userToken"),
+        "oponentUsername":  oponent, // TODO - Må endres
+
+        "gameAttack1": document.querySelector('input[name=' + gameAttack1 + ']:checked').value,
+        "gameAttack2": document.querySelector('input[name=' + gameAttack2 + ']:checked').value,
+        "gameAttack3": document.querySelector('input[name=' + gameAttack3 + ']:checked').value,
+        "gameDefend1": document.querySelector('input[name=' + gameDefend1 + ']:checked').value,
+        "gameDefend2": document.querySelector('input[name=' + gameDefend2 + ']:checked').value,
+        "gameDefend3": document.querySelector('input[name=' + gameDefend3 + ']:checked').value
+    };
+
+    $.ajax({
+        url: baseUrl + "/fight",
+        dataType: "text",
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify(moves),
+        success: function (response) {
+            document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
+            document.getElementById("game-player_challenge-message").innerHTML = "Fighting " + oponent;
+        },
+        error: function (error) {
+            console.log(error);
+            if (error.status === 400) {
+                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
+            } else {
+                document.getElementById("game-challenge-message").innerHTML = "Ukjent feil";
+            }
+        }
+    });
+}
+
+
+// TODO: Bør gå mot en FightController
+function setupFightList() {
+    let token = window.localStorage.getItem("userToken");
+
+    $.ajax({
+        url: baseUrl + "/findFightList",
+        dataType: "text",
+        type: "post",
+        contentType: "application/json",
+        data: token,
+        success: function (response) {
+            setupResult(JSON.parse(response));
+        },
+        error: function (error) {
+            console.log(error);
+            if (error.status === 400) {
+                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
+            } else {
+                document.getElementById("login-message").innerHTML = "Ukjent feil";
+            }
+        }
+    });
+}
+
+function setupResult(data) {
+
+    let ul = document.createElement('ul');
+    ul.setAttribute('id', "fightList");
+    document.getElementById("game_result_list").innerHTML = "";
+    document.getElementById("game_result_list").appendChild(ul);
+
+    data.forEach(element => {
+
+        let username = document.createElement('li');
+
+        ul.appendChild(username);
+
+        username.innerHTML = element;
+    })
+
 }

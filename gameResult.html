@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>En enkel frontend</title>
+</head>
+<body>
+<div id="container">
+    <div id="header_menu"></div>
+    
+    <h1>Result from challenges</h1>
+
+    <div id="game_result_list"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script/user.js"></script>
+    <script src="script/game.js"></script>
+    <script src="script/createHeaderMenu.js"></script>
+    <script>
+        window.onload = function () {
+            setupPage();
+            setupFightList();
+        }
+    </script>
+</div>
+</body>
+</html>

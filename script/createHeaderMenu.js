@@ -59,6 +59,11 @@ function createHeaderMenuLinks(isLoggedIn) {
         liGame.appendChild(linkSpill);
         ul.appendChild(liGame);
 
+        let liResult = document.createElement("li");
+        let linkResult = createLink("Result", "gameResult.html", "Resultat");
+        liResult.appendChild(linkResult);
+        ul.appendChild(liResult);
+
         // Min side
         let liMinSide = document.createElement("li");
         let linkMinSide = createLink("Min side", "minSide.html", "Min side");
