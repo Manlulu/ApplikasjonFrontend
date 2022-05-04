@@ -176,7 +176,7 @@ function fightPlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDef
             if (error.status === 400) {
                 document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
             } else {
-                document.getElementById("game-challenge-message").innerHTML = "Ukjent feil";
+                document.getElementById("game-player_challenge-message").innerHTML = "Ukjent feil";
             }
         }
     });
