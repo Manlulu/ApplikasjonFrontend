@@ -168,8 +168,10 @@ function fightPlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDef
         contentType: "application/json",
         data: JSON.stringify(moves),
         success: function (response) {
+            console.log("Response under:")
+            console.log(response)
             document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
-            document.getElementById("game-player_challenge-message").innerHTML = "Fighting " + oponent;
+            document.getElementById("game-player_challenge-message").innerHTML = response;
         },
         error: function (error) {
             console.log(error);
