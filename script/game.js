@@ -128,7 +128,7 @@ function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gam
         data: JSON.stringify(moves),
         success: function (response) {
             document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
-            document.getElementById("game-player_challenge-message").innerHTML = "Challenge accepted!";
+            // document.getElementById("game-player_challenge-message").innerHTML = "Challenge accepted!";
         },
         error: function (error) {
             console.log(error);
@@ -171,7 +171,10 @@ function fightPlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDef
             console.log("Response under:")
             console.log(response)
             document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
-            document.getElementById("game-player_challenge-message").innerHTML = response;
+            let jsonResponse = JSON.parse(response)
+            document.getElementById("game-player_challenge-message_winner").innerHTML = "Winner: " + jsonResponse.winner;
+            document.getElementById("game-player_challenge-message_player-score").innerHTML = "Your score: " + jsonResponse.accepterPoints;
+            document.getElementById("game-player_challenge-message_oponent-score").innerHTML = "Opponent score: " + jsonResponse.challengerPoints;
         },
         error: function (error) {
             console.log(error);
