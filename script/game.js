@@ -25,6 +25,7 @@ function setupGamePage() {
 }
 
 function setupPlayerChallenge() {
+    console.log("Setup player challenge")
     let token = window.localStorage.getItem("userToken");
 
     $.ajax({
@@ -34,10 +35,14 @@ function setupPlayerChallenge() {
         contentType: "application/json",
         data: token,
         success: function (response) {
-            let challenge = JSON.parse(response);
-            document.getElementById("game_player_attack_headline").innerHTML = challenge.oponentUsername + " is attacking!";
-            window.localStorage.setItem("oponent", challenge.oponentUsername);
-            document.getElementById("game_player_attack").style.visibility = "visible";
+            try {
+                let challenge = JSON.parse(response);
+                document.getElementById("game_player_attack_headline").innerHTML = challenge.oponentUsername + " is attacking!";
+                window.localStorage.setItem("oponent", challenge.oponentUsername);
+                document.getElementById("game_player_attack").style.visibility = "visible";
+            } catch (e) {
+                // Svelger exeption. Endre dette.
+            }
         },
         error: function (error) {
             console.log(error);
@@ -55,16 +60,20 @@ function findUser() {
         "username": document.getElementById("username").value,
     };
 
+    let token = {
+        "token": window.localStorage.getItem("userToken")
+    };
+
     $.ajax({
         url: baseUrl + "/findUser",
         dataType: "text",
         type: "post",
         contentType: "application/json",
-        data: JSON.stringify(user),
+        data: JSON.stringify(Object.assign({}, user, token)),
         success: function (response) {
             document.getElementById("minSide-message").innerHTML = "";
-            setupPlayer(response, "game_other_data");
             document.getElementById("game_enemy_attack").style.visibility = "visible";
+            setupOponent(response, "game_other_data");
         },
         error: function (error) {
             console.log(error);
@@ -101,6 +110,84 @@ function setupPlayer(data, id) {
     lost.innerHTML = "Lose: ".bold() + user.lost;
 }
 
+function setupOponent(data, id) {
+    const user = JSON.parse(data);
+
+    let ul = document.createElement('ul');
+    ul.setAttribute('id', "gameList");
+    document.getElementById(id).innerHTML = "";
+    document.getElementById(id).appendChild(ul);
+
+    let username = document.createElement('li');
+    let level = document.createElement('li');
+    let win = document.createElement('li');
+    let lost = document.createElement('li');
+
+    ul.appendChild(username);
+    ul.appendChild(level);
+    ul.appendChild(win);
+    ul.appendChild(lost);
+
+    username.innerHTML = "Bruker: ".bold() + user.username;
+    level.innerHTML = "Level: ".bold() + user.level;
+    win.innerHTML = "Win: ".bold() + user.win;
+    lost.innerHTML = "Lose: ".bold() + user.lost;
+
+    if(user.challengeEntity != null) {
+
+        if (user.challengeEntity.gameAttack1 == 1) {
+            document.getElementById('game_attack_upper_1').checked = true
+        } else if (user.challengeEntity.gameAttack1 == 2) {
+            document.getElementById('game_attack_mid_1').checked = true
+        } else if (user.challengeEntity.gameAttack1 == 3) {
+            document.getElementById('game_attack_down_1').checked = true
+        }
+
+        if (user.challengeEntity.gameAttack2 == 4) {
+            document.getElementById('game_attack_upper_2').checked = true
+        } else if (user.challengeEntity.gameAttack2 == 5) {
+            document.getElementById('game_attack_mid_2').checked = true
+        } else if (user.challengeEntity.gameAttack2 == 6) {
+            document.getElementById('game_attack_down_2').checked = true
+        }
+
+        if (user.challengeEntity.gameAttack3 == 7) {
+            document.getElementById('game_attack_upper_3').checked = true
+        } else if (user.challengeEntity.gameAttack3 == 8) {
+            document.getElementById('game_attack_mid_3').checked = true
+        } else if (user.challengeEntity.gameAttack3 == 9) {
+            document.getElementById('game_attack_down_3').checked = true
+        }
+
+        if (user.challengeEntity.gameDefend1 == 1) {
+            document.getElementById('game_defend_upper_1').checked = true
+        } else if (user.challengeEntity.gameDefend1 == 2) {
+            document.getElementById('game_defend_mid_1').checked = true
+        } else if (user.challengeEntity.gameDefend1 == 3) {
+            document.getElementById('game_defend_down_1').checked = true
+        }
+
+        if (user.challengeEntity.gameDefend2 == 4) {
+            document.getElementById('game_defend_upper_2').checked = true
+        } else if (user.challengeEntity.gameDefend2 == 5) {
+            document.getElementById('game_defend_mid_2').checked = true
+        } else if (user.challengeEntity.gameDefend2 == 6) {
+            document.getElementById('game_defend_down_2').checked = true
+        }
+
+        if (user.challengeEntity.gameDefend3 == 7) {
+            document.getElementById('game_defend_upper_3').checked = true
+        } else if (user.challengeEntity.gameDefend3 == 8) {
+            document.getElementById('game_defend_mid_3').checked = true
+        } else if (user.challengeEntity.gameDefend3 == 9) {
+            document.getElementById('game_defend_down_3').checked = true
+        }
+
+        document.getElementById("game_challenge_button_deactivated").disabled = true;
+    }
+}
+
+
 function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDefend2, gameDefend3) {
 
     let oponent = window.localStorage.getItem("oponent");
@@ -129,6 +216,7 @@ function challengePlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gam
         success: function (response) {
             document.getElementById("game-challenge-message").innerHTML = "Player challenged!";
             // document.getElementById("game-player_challenge-message").innerHTML = "Challenge accepted!";
+            document.getElementById("game_challenge_button_deactivated").disabled = true;
         },
         error: function (error) {
             console.log(error);
