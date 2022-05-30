@@ -111,7 +111,7 @@ function setupPage() {
             return response.text();
         }
     }).then(function (responseString) {
-        if (responseString.length !== 0) {
+        if (responseString !== undefined && responseString.length !== 0) {
             return JSON.parse(responseString);
         }
     }).then(function (result) {
