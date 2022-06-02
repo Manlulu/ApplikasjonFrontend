@@ -98,16 +98,19 @@ function setupPlayer(data, id) {
     let level = document.createElement('li');
     let win = document.createElement('li');
     let lost = document.createElement('li');
+    let draw = document.createElement('li');
 
     ul.appendChild(username);
     ul.appendChild(level);
     ul.appendChild(win);
     ul.appendChild(lost);
+    ul.appendChild(draw);
 
     username.innerHTML = "Bruker: ".bold() + user.username;
     level.innerHTML = "Level: ".bold() + user.level;
     win.innerHTML = "Win: ".bold() + user.win;
     lost.innerHTML = "Lose: ".bold() + user.lost;
+    draw.innerHTML = "Draw: ".bold() + user.draw;
 }
 
 function setupOponent(data, id) {
@@ -122,16 +125,19 @@ function setupOponent(data, id) {
     let level = document.createElement('li');
     let win = document.createElement('li');
     let lost = document.createElement('li');
+    let draw = document.createElement('li');
 
     ul.appendChild(username);
     ul.appendChild(level);
     ul.appendChild(win);
     ul.appendChild(lost);
+    ul.appendChild(draw);
 
     username.innerHTML = "Bruker: ".bold() + user.username;
     level.innerHTML = "Level: ".bold() + user.level;
     win.innerHTML = "Win: ".bold() + user.win;
     lost.innerHTML = "Lose: ".bold() + user.lost;
+    draw.innerHTML = "Draw: ".bold() + user.draw;
 
     if(user.challengeEntity != null) {
 
@@ -278,42 +284,37 @@ function fightPlayer(gameAttack1, gameAttack2, gameAttack3, gameDefend1, gameDef
 
 // TODO: Bør gå mot en FightController
 function setupFightList() {
-    let token = window.localStorage.getItem("userToken");
+    let userToken = window.localStorage.getItem("userToken");
 
-    $.ajax({
-        url: baseUrl + "/findFightList",
-        dataType: "text",
-        type: "post",
-        contentType: "application/json",
-        data: token,
-        success: function (response) {
-            setupResult(JSON.parse(response));
+    let token = {
+        "token": userToken
+    };
+
+
+    fetch(baseUrl + "/allResults", {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        error: function (error) {
-            console.log(error);
-            if (error.status === 400) {
-                document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
-            } else {
-                document.getElementById("login-message").innerHTML = "Ukjent feil";
-            }
+        body: JSON.stringify(token)
+    }).then(function (response) {
+        return response.text();
+    }).then(function (response) {
+        setupResult(JSON.parse(response));
+    }).catch((error) => {
+        console.log(error);
+        if (error.status === 400) {
+            document.getElementById("minSide-message").innerHTML = "Fant ikke bruker";
+        } else {
+            document.getElementById("login-message").innerHTML = "Ukjent feil";
         }
     });
 }
 
 function setupResult(data) {
-
     let ul = document.createElement('ul');
     ul.setAttribute('id', "fightList");
-    document.getElementById("game_result_list").innerHTML = "";
-    document.getElementById("game_result_list").appendChild(ul);
 
-    data.forEach(element => {
-
-        let username = document.createElement('li');
-
-        ul.appendChild(username);
-
-        username.innerHTML = element;
-    })
-
+    createTable(data, "game_result_list");
 }

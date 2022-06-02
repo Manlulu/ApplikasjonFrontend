@@ -25,6 +25,7 @@ function setupMinSide() {
             document.getElementById("minSide-email").innerHTML = "E-post: " + result.email;
             document.getElementById("minSide-win").innerHTML = "Antall win: " + result.win;
             document.getElementById("minSide-lose").innerHTML = "Antall lose: " + result.lost;
+            document.getElementById("minSide-draw").innerHTML = "Antall draw: " + result.draw;
         }
     }).catch((error) => {
         console.log("En error: " + error);
