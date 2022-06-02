@@ -36,18 +36,7 @@ function createOverskrift(title, href, id, text) {
 }
 
 function createHeaderMenuLinks(isLoggedIn) {
-    let liCreateUser = document.createElement("li");
-    let liAlleUsers = document.createElement("li");
-
-    let linkCreateUser = createLink("Opprett bruker", "createUser.html", "Opprett brukere");
-    let linkVisAlle = createLink("Alle brukere", "alleUsers.html", "Vis alle brukere");
-
-    liCreateUser.appendChild(linkCreateUser);
-    liAlleUsers.appendChild(linkVisAlle);
-
     let ul = document.createElement("ul");
-    ul.appendChild(liCreateUser);
-    ul.appendChild(liAlleUsers);
 
     if (isLoggedIn) {
         // Logout
@@ -70,12 +59,23 @@ function createHeaderMenuLinks(isLoggedIn) {
         liMinSide.appendChild(linkMinSide);
         ul.appendChild(liMinSide);
     } else {
+        let liCreateUser = document.createElement("li");
+        let linkCreateUser = createLink("Opprett bruker", "createUser.html", "Opprett bruker");
+        liCreateUser.appendChild(linkCreateUser);
+        ul.appendChild(liCreateUser);
+
         // Login
         let linkLogin = createLink("Logg inn", "login.html", "Logg inn");
         let liLogin = document.createElement("li");
         liLogin.appendChild(linkLogin);
         ul.appendChild(liLogin);
     }
+
+    let liAlleUsers = document.createElement("li");
+    let linkVisAlle = createLink("Alle brukere", "alleUsers.html", "Vis alle brukere");
+    liAlleUsers.appendChild(linkVisAlle);
+    ul.appendChild(liAlleUsers);
+
     return ul;
 }
 
