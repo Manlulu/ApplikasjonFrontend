@@ -23,6 +23,7 @@ function setupMinSide() {
             console.log(result);
             document.getElementById("minSide-brukernavn").innerHTML = "Bruker: " + result.username;
             document.getElementById("minSide-email").innerHTML = "E-post: " + result.email;
+            document.getElementById("minSide-level").innerHTML = "Level: " + result.level;
             document.getElementById("minSide-win").innerHTML = "Antall win: " + result.win;
             document.getElementById("minSide-lose").innerHTML = "Antall lose: " + result.lost;
             document.getElementById("minSide-draw").innerHTML = "Antall draw: " + result.draw;
